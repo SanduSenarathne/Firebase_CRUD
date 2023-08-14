@@ -1,0 +1,84 @@
+import 'package:crud_operations/addUsers.dart';
+import 'package:flutter/material.dart';
+import 'Model/User.dart';
+import 'package:intl/intl.dart';
+import 'CRUD/crud_operations.dart';
+
+class FrontPage extends StatefulWidget {
+  const FrontPage({super.key});
+
+  @override
+  State<FrontPage> createState() => _FrontPageState();
+}
+
+class _FrontPageState extends State<FrontPage> {
+  CRUDoperations _cruDoperations = CRUDoperations();
+
+  Widget buildUser(User user) {
+    final DateFormat dateFormat = DateFormat('yyyy-MM-dd');
+
+    return ListTile(
+      leading: CircleAvatar(child: Text(user.name[0])),
+      title: Text(user.name),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Birthday: ${dateFormat.format(user.birthday)}'),
+          Text('Age: ${user.age}'),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.blue[400],
+        title: const Text(
+          'All Users',
+          style: TextStyle(
+            color: Colors.black,
+            fontStyle: FontStyle.italic,
+            fontSize: 30,
+          ),
+        ),
+      ),
+      body: StreamBuilder<List<User>>(
+        stream: _cruDoperations.readUser(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text('Something went wrong!${snapshot.error}');
+          } else if (snapshot.hasData) {
+            final users = snapshot.data!;
+            return ListView(
+              children: users.map(buildUser).toList(),
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddUserPage()),
+          );
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.blue[400],
+      ),
+    );
+  }
+
+  /*Stream<List<User>> readUser() =>
+      FirebaseFirestore.instance.collection('Users').snapshots().map(
+            (snapshot) => snapshot.docs
+                .map(
+                  (doc) => User.fromJson(doc.data()),
+                )
+                .toList(),
+          );*/
+}
