@@ -27,4 +27,25 @@ class CRUDoperations {
     //create document and write data to firebase
     await docUser.set(json);
   }
+
+  //Delating user
+  Future<void> deleteUser(User user) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(user.id)
+          .delete();
+      print('User deleted successfully.');
+    } catch (error) {
+      print('Error deleting user: $error');
+    }
+  }
+  /*Future<void> deleteUser() async {
+    try {
+      await FirebaseFirestore.instance.collection('Users').doc(userId).delete();
+      print('User deleted successfully.');
+    } catch (error) {
+      print('Error deleting user: $error');
+    }
+  }*/
 }
