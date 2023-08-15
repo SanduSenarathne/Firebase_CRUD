@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:54050905951:android:198bdc7c981a233cfd60ea",
+        "mobilesdk_app_id": "1:54050905951:android:c1ca059bf59cf6e9fd60ea",
         "android_client_info": {
           "package_name": "com.example.crud_operations"
         }

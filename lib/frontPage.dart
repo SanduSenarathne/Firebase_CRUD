@@ -1,4 +1,5 @@
 import 'package:crud_operations/addUsers.dart';
+import 'package:crud_operations/updateUser.dart';
 import 'package:flutter/material.dart';
 import 'Model/User.dart';
 import 'package:intl/intl.dart';
@@ -25,6 +26,29 @@ class _FrontPageState extends State<FrontPage> {
         children: [
           Text('Birthday: ${dateFormat.format(user.birthday)}'),
           Text('Age: ${user.age}'),
+        ],
+      ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            icon: Icon(Icons.edit),
+            color: Colors.green[700],
+            onPressed: () {
+              //  navigate to update page
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => UpdateUser(userid: user.id)),
+              );
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.delete),
+            color: Colors.red[700],
+            onPressed: () {
+              // delete functionality
+            },
+          ),
         ],
       ),
     );
