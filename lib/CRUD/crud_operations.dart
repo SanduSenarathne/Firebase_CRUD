@@ -40,12 +40,4 @@ class CRUDoperations {
       print('Error deleting user: $error');
     }
   }
-  /*Future<void> deleteUser() async {
-    try {
-      await FirebaseFirestore.instance.collection('Users').doc(userId).delete();
-      print('User deleted successfully.');
-    } catch (error) {
-      print('Error deleting user: $error');
-    }
-  }*/
 }
