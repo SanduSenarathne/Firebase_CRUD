@@ -14,7 +14,7 @@ class _AddUserPageState extends State<AddUserPage> {
   final _ageController = TextEditingController();
   final _birthdayController = TextEditingController();
 
-  CRUDoperations _cruDoperations = CRUDoperations();
+  CRUDoperations _CRUDoperations = CRUDoperations();
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class _AddUserPageState extends State<AddUserPage> {
                   final name = _nameController.text;
                   final age = int.parse(_ageController.text);
                   final birthday = DateTime.parse(_birthdayController.text);
-                  _cruDoperations.createUser(
+                  _CRUDoperations.createUser(
                       name: name, age: age, birthday: birthday);
                   cleardata();
                 },

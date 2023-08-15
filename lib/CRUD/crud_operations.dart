@@ -28,6 +28,22 @@ class CRUDoperations {
     await docUser.set(json);
   }
 
+  //update user
+  Future<void> updateUser(
+      {required String id,
+      required String name,
+      required int age,
+      required DateTime birthday}) async {
+    // Reference to the existing document
+    final docUser = FirebaseFirestore.instance.collection('Users').doc(id);
+
+    final user = User(id: id, name: name, age: age, birthday: birthday);
+    final json = user.toJson();
+
+    // Update the existing document with the new data
+    await docUser.update(json);
+  }
+
   //Delating user
   Future<void> deleteUser(User user) async {
     try {

@@ -1,5 +1,5 @@
 import 'package:crud_operations/addUsers.dart';
-import 'package:crud_operations/updateUser.dart';
+import 'package:crud_operations/updatePopup.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -49,9 +49,9 @@ class _FrontPageState extends State<FrontPage> {
             color: Colors.green[700],
             onPressed: () {
               //  navigate to update page
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => UpdateUser(userid: user.id)),
+              showDialog(
+                context: context,
+                builder: (context) => UpdateUserPopup(user: user),
               );
             },
           ),
