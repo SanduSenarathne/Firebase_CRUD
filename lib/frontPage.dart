@@ -1,9 +1,10 @@
 import 'package:crud_operations/addUsers.dart';
 import 'package:crud_operations/updateUser.dart';
 import 'package:flutter/material.dart';
-import 'Model/User.dart';
 import 'package:intl/intl.dart';
+
 import 'CRUD/crud_operations.dart';
+import 'Model/User.dart';
 
 class FrontPage extends StatefulWidget {
   const FrontPage({super.key});
@@ -13,7 +14,19 @@ class FrontPage extends StatefulWidget {
 }
 
 class _FrontPageState extends State<FrontPage> {
-  CRUDoperations _cruDoperations = CRUDoperations();
+  /*Future<void> deleteUser(User user) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(user.id)
+          .delete();
+      print('User deleted successfully.');
+    } catch (error) {
+      print('Error deleting user: $error');
+    }
+  }*/
+
+  final CRUDoperations _cruDoperations = CRUDoperations();
 
   Widget buildUser(User user) {
     final DateFormat dateFormat = DateFormat('yyyy-MM-dd');
@@ -45,8 +58,9 @@ class _FrontPageState extends State<FrontPage> {
           IconButton(
             icon: Icon(Icons.delete),
             color: Colors.red[700],
-            onPressed: () {
+            onPressed: () async {
               // delete functionality
+              await _cruDoperations.deleteUser(user);
             },
           ),
         ],
