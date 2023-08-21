@@ -1,7 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crud_operations/Model/User.dart';
+//import 'package:flutter/material.dart';
 
 class CRUDoperations {
+  //final BuildContext context; // Add this field
+
+  //CRUDoperations(this.context);
+
   //show list of the users inside the database
   Stream<List<User>> readUser() =>
       FirebaseFirestore.instance.collection('Users').snapshots().map(
@@ -20,8 +25,10 @@ class CRUDoperations {
     //reference to document
     final docUser = FirebaseFirestore.instance.collection('Users').doc();
 
+    // Create a new User instance
     final user = User(id: docUser.id, name: name, age: age, birthday: birthday);
 
+    // Convert the User instance to JSON format
     final json = user.toJson();
 
     //create document and write data to firebase

@@ -36,7 +36,6 @@ class UpdateUserPopup extends StatelessWidget {
             controller: _birthdayController,
             decoration: InputDecoration(labelText: 'Birthday'),
           ),
-          // Add more input fields for birthday if needed
         ],
       ),
       actions: [
