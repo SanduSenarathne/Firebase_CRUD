@@ -14,18 +14,6 @@ class FrontPage extends StatefulWidget {
 }
 
 class _FrontPageState extends State<FrontPage> {
-  /*Future<void> deleteUser(User user) async {
-    try {
-      await FirebaseFirestore.instance
-          .collection('Users')
-          .doc(user.id)
-          .delete();
-      print('User deleted successfully.');
-    } catch (error) {
-      print('Error deleting user: $error');
-    }
-  }*/
-
   final CRUDoperations _cruDoperations = CRUDoperations();
 
   Widget buildUser(User user) {

@@ -3,10 +3,6 @@ import 'package:crud_operations/Model/User.dart';
 //import 'package:flutter/material.dart';
 
 class CRUDoperations {
-  //final BuildContext context; // Add this field
-
-  //CRUDoperations(this.context);
-
   //show list of the users inside the database
   Stream<List<User>> readUser() =>
       FirebaseFirestore.instance.collection('Users').snapshots().map(
